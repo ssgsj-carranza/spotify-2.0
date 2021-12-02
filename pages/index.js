@@ -24,3 +24,4 @@ export default function Home() {
 
 
 // npm install @heroicons/react
+// npm install next-auth@beta
