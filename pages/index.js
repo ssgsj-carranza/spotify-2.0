@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Sidebar from '../components/Sidebar'
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
 
       <main>
         {/* sidebar */}
+        <Sidebar />
         {/* center */}
       </main>
       
@@ -19,3 +21,6 @@ export default function Home() {
     </div>
   )
 }
+
+
+// npm install @heroicons/react
