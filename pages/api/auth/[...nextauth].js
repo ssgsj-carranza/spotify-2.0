@@ -67,7 +67,7 @@ export default NextAuth({
     },
     //what user taps into as their client session, allocates what we want from the token to user
     async session({session, token}) {
-      session.user.accessToken = token,accessToken;
+      session.user.accessToken = token.accessToken;
       session.user.refreshToken = token.refreshToken;
       session.user.username = token.username;
 
