@@ -16,7 +16,7 @@ function Login({providers}) {
 
 export default Login
 
-//renders it on server before login and delivers it to the client
+//renders it on server before login and delivers it to the client.
 export async function getServerSideProps() {
     const providers = await getProviders();
 
