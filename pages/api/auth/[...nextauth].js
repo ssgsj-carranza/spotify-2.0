@@ -43,6 +43,7 @@ export default NextAuth({
   pages: {
     signIn: '/login'
   },
+  //authentication below
   callbacks: {
     async jwt({token, account, user}) {
       // initial singin
@@ -61,8 +62,16 @@ export default NextAuth({
         return token;
       }
       // if access token expired, refreshes it
-      console.log('token has expired')
+      console.log('token has expired');
       return await returnAccessToken(token);
+    },
+    //what user taps into as their client session, allocates what we want from the token to user
+    async session({session, token}) {
+      session.user.accessToken = token,accessToken;
+      session.user.refreshToken = token.refreshToken;
+      session.user.username = token.username;
+
+      return session;
     },
   },
 });
