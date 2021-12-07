@@ -14,4 +14,20 @@ export default NextAuth({
   ],
   //encrypt jwt received from spotify
   secret: process.env.JWT_SECRET,
-})
+  pages: {
+    signIn: '/login'
+  },
+  callbacks: {
+    async jwt({token, account, user}) {
+      // initial singin
+      if (account && user) {
+        return {
+          ...token,
+          accessToken: account.access_token,
+          refreshToken: account.refresh_token,
+          username: account.providerAccountId,
+        }
+      }
+    }
+  }
+});
