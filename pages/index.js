@@ -28,3 +28,4 @@ export default function Home() {
 // npm install @heroicons/react
 // npm install next-auth@beta
 // npm install spotify-web-api-node --save
+// npm install tailwind-scrollbar-hide
