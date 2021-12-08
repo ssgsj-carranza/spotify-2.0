@@ -1,8 +1,20 @@
 import {HomeIcon, SearchIcon, LibraryIcon, PlusCircleIcon, HeartIcon, RssIcon} from '@heroicons/react/outline';
 import { signOut, useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import useSpotify from '../hooks/useSpotify';
 
 function Sidebar() {
     const {data: session, status} = useSession();
+    const [playlist, setPlaylist] = useState([]);
+    const spotifyApi = useSpotify();
+
+    useEffect(() => {
+        if (spotifyApi.getAccessToken()) {
+            spotifyApi.getUserPlaylists().then((data) => {
+                setPlaylist(data.body.items);
+            });
+        }
+    }, [session, spotifyApi])
     
     return (
         <div className="text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll scrollbar-hide h-screen">
