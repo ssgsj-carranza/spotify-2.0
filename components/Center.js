@@ -13,7 +13,10 @@ function Center() {
                     <h2>{session?.user?.name}</h2>
                     <ChevronDownIcon className="h-5 w-5"/>
                 </div>
-            </header>       
+            </header>
+            <section className={`flex items-end space-x-7 bg-gradient-to-b to-black from-red-500 h-80 text-white p-8`}>
+                {/* <img src="" alt="" /> */}
+            </section>       
         </div>
     )
 }
