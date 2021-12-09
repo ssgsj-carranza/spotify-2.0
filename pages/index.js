@@ -30,3 +30,4 @@ export default function Home() {
 // npm install spotify-web-api-node --save
 // npm install tailwind-scrollbar-hide
 // npm install lodash
+// npm install recoil
