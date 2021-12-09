@@ -25,7 +25,6 @@ function Center() {
     const [playlist, setPlaylist] = useRecoilState(playlistState);
     const spotifyApi = useSpotify();
 
-
     useEffect(() => {
         setColor(shuffle(colors).pop())    
     }, [playlistId]);
@@ -36,6 +35,7 @@ function Center() {
         })
         .catch((err) => console.log('error', err));
     }, [spotifyApi, playlistId]);
+    console.log(playlist);
 
     return (
         <div className="flex-grow">
