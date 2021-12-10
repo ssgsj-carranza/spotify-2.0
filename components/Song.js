@@ -11,7 +11,11 @@ function Song({order, track}) {
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
     
     const playSong = () => {
-
+        setCurrentTrackId(track.track.id);
+        setIsPlaying(true);
+        spotifyApi.play({
+            uris: [track.track.uri],
+        });
     };
 
     return (
