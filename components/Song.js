@@ -1,13 +1,21 @@
 import useSpotify from "../hooks/useSpotify";
 import { millisToMinutesAndSeconds } from "../lib/time";
 import {PlayIcon} from '@heroicons/react/solid';
+import { useRecoilState } from "recoil";
+import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 
 
 function Song({order, track}) {
-    const spotifyApi = useSpotify();    
+    const spotifyApi = useSpotify();
+    const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
+    const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+    
+    const playSong = () => {
+
+    };
 
     return (
-        <div className="grid grid-cols-2 text-gray-500 py-4 px-5 hover:bg-gray-900 rounded-lg cursor-pointer">
+        <div className="grid grid-cols-2 text-gray-500 py-4 px-5 hover:bg-gray-900 rounded-lg cursor-pointer" onClick={playSong}>
             <div className="flex items-center space-x-4">
                 <p>
                 {/* <PlayIcon className='opacity-0 hover:opacity-100 h-7 w-7' /> */}
