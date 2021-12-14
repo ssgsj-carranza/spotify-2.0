@@ -42,6 +42,10 @@ function Player() {
             {/* left section */}
             <div>
                 <img className='hidden md:inline h-10 w-10' src={songInfo?.album.images?.[0]?.url} alt="" />
+                <div>
+                    <h3>{songInfo?.name}</h3>
+                    <p>{songInfo?.artists?.[0]?.name}</p>
+                </div>
             </div>        
         </div>
     )
