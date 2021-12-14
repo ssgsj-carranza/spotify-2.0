@@ -1,4 +1,5 @@
-import { RewindIcon, SwitchHorizontalIcon } from "@heroicons/react/solid";
+import { RewindIcon, SwitchHorizontalIcon, FastForwardIcon, PauseIcon, PlayIcon, ReplyIcon, VolumeUpIcon } from "@heroicons/react/solid";
+import {HeartIcon, VolumeUpIcon as VolumeDownIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -50,11 +51,17 @@ function Player() {
             </div>
             
             {/* center section */}
-            <div>
+            <div className='flex items-center justify-evenly'>
                 <SwitchHorizontalIcon className='button'/>
                 <RewindIcon className='button'
                             // onClick={() => spotifyApi.skipToPrevious()} API call is not working on spotify side
-                />        
+                />
+
+                {isPlaying ? (
+                    <PauseIcon className='button w-10 h-10' />
+                ) : (
+                    <PlayIcon className='button w-10 h-10'/>
+                )}        
             </div>
         </div>
     )
