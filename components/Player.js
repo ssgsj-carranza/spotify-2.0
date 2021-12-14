@@ -80,10 +80,17 @@ function Player() {
                 />
                 <ReplyIcon className='button'/>        
             </div>
+            
             {/* right section */}
             <div className='flex items-right space-x-3 md:space-x-4 justify-end pr-5'>
                 <VolumeDownIcon className='button' />
-                <input type="range" value='' min={0} max={100}/>
+                <input className='w-14 md:w-28' 
+                       type="range" 
+                       value={volume} 
+                       min={0} 
+                       max={100}
+                       onChange={(e) = setVolume(Number(e.target.value))}
+                />
                 <VolumeUpIcon className='button'/>
             </div>
         </div>
