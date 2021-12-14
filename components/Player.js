@@ -39,6 +39,19 @@ function Player() {
         }
     },[currentTrackId, spotifyApi, session]);
 
+    const handlePlayPause = () => {
+        spotifyApi.getMyCurrentPlaybackState().then((data) => {
+            if (data.body.isPlaying) {
+                spotifyApi.pause();
+                setIsPlaying(false)
+            }
+            else {
+                spotifyApi.play();
+                setIsPlaying(true);
+            }
+        });
+    };
+
     return (
         <div className='h-24 bg-gradient-to-b from-black to-gray-900 text-white grid grid-cols-3 text-xs md:text-base px-2 md:px-8'>
             {/* left section */}
@@ -58,10 +71,14 @@ function Player() {
                 />
 
                 {isPlaying ? (
-                    <PauseIcon className='button w-10 h-10' />
+                    <PauseIcon onClick={handlePlayPause} className='button w-10 h-10' />
                 ) : (
-                    <PlayIcon className='button w-10 h-10'/>
-                )}        
+                    <PlayIcon onClick={handlePlayPause} className='button w-10 h-10'/>
+                )}
+                <FastForwardIcon className='button' 
+                                 // onClick={() => spotifyApi.skipToNext()} API call is not working on spotify side   
+                />
+                <ReplyIcon className='button'/>        
             </div>
         </div>
     )
