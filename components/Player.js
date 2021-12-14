@@ -1,4 +1,4 @@
-import { SwitchHorizontalIcon } from "@heroicons/react/solid";
+import { RewindIcon, SwitchHorizontalIcon } from "@heroicons/react/solid";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
@@ -51,7 +51,10 @@ function Player() {
             
             {/* center section */}
             <div>
-                <SwitchHorizontalIcon className='button'/>        
+                <SwitchHorizontalIcon className='button'/>
+                <RewindIcon className='button'
+                            // onClick={() => spotifyApi.skipToPrevious()} API call is not working on spotify side
+                />        
             </div>
         </div>
     )
