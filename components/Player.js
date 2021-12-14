@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import useSongInfo from "../hooks/useSongInfo";
@@ -13,6 +13,20 @@ function Player() {
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
     const [volume, setVolume] = useState(50);
     const songInfo = useSongInfo();
+    const fetchCurrentSong = () => {
+        if (!songInfo) {
+            spotifyApi.getMyCurrentPlayingTrack().then((data) => {
+                console.log('now playing:', data.body?.item);
+                setCurrentIdTrack(data.body?.item.id);
+            })
+        }
+    }
+
+    useEffect(() => {
+        if (spotifyApi.getAccessToken() && !currentTrackId) {
+            //fecth song info
+        }
+    },[currentTrackId, spotifyApi, session])
 
     return (
         <div>
