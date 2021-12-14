@@ -38,7 +38,7 @@ function Player() {
     },[currentTrackId, spotifyApi, session]);
 
     return (
-        <div>
+        <div className='h-24 bg-gradient-to-b from-black to-gray-900 text-white'>
             {/* left section */}
             <div>
                 <img className='hidden md:inline h-10 w-10' src={songInfo?.album.images?.[0]?.url} alt="" />
