@@ -9,24 +9,33 @@ import useSpotify from "../hooks/useSpotify";
 function Player() {
     const spotifyApi = useSpotify();
     const {data: session, status} = useSession();
-    const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
+    const [currentTrackId, setCurrentIdTrack] = useRecoilState(currentTrackIdState);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
     const [volume, setVolume] = useState(50);
     const songInfo = useSongInfo();
+    
     const fetchCurrentSong = () => {
         if (!songInfo) {
+            //got the current playing track and set that as the id track
             spotifyApi.getMyCurrentPlayingTrack().then((data) => {
                 console.log('now playing:', data.body?.item);
                 setCurrentIdTrack(data.body?.item.id);
-            })
+
+                spotifyApi.getMyCurrentPlaybackState().then((data) => {
+                    console.log('now playing:', data.body);
+                    setIsPlaying(data.body?.is_playing);
+                });
+            });
         }
     }
 
     useEffect(() => {
         if (spotifyApi.getAccessToken() && !currentTrackId) {
             //fecth song info
+            fetchCurrentSong();
+            setVolume(50);
         }
-    },[currentTrackId, spotifyApi, session])
+    },[currentTrackId, spotifyApi, session]);
 
     return (
         <div>
