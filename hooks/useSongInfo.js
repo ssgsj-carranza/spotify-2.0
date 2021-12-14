@@ -8,7 +8,7 @@ import useSpotify from "./useSpotify";
 function useSongInfo() {
     const [currentIdTrack, setCurrentIdTrack] = useRecoilState(currentTrackIdState);
     const spotifyApi = useSpotify();
-    const [songInfo, setSongInfo] = useState(null, songInfo);
+    const [songInfo, setSongInfo] = useState(null);
 
 //this is how you run an async conde inside a useEffect, by encapsulating it
 //when you make a request to an api, the access token is placed on the header, pass it around as a bearer with the token, know spotify knows the user is authenticated
@@ -27,7 +27,7 @@ function useSongInfo() {
             }
         }
         fetchSongInfo();
-    },[currentTrackId, spotifyApi])
+    },[currentIdTrack, spotifyApi])
 
     return songInfo;
 }
