@@ -3,12 +3,22 @@ import { millisToMinutesAndSeconds } from "../lib/time";
 import {PlayIcon} from '@heroicons/react/solid';
 import { useRecoilState } from "recoil";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
+import { useState } from "react";
 
 
 function Song({order, track}) {
     const spotifyApi = useSpotify();
     const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseHover = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
     
     const playSong = () => {
         setCurrentTrackId(track.track.id);
@@ -20,10 +30,10 @@ function Song({order, track}) {
 
     return (
         <div className="grid grid-cols-2 text-gray-500 py-4 px-5 hover:bg-gray-900 rounded-lg cursor-pointer" onClick={playSong}>
-            <div className="flex items-center space-x-4">
+            <div onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave} className="group flex items-center space-x-4">
                 <p>
-                {/* <PlayIcon className='opacity-0 hover:opacity-100 h-7 w-7' /> */}
-                    {order + 1}</p>
+                    {!isHovered ? (`${order + 1}`) : (<PlayIcon className='h-7 w-7' />)}
+                    </p>
                 <img className="h-10 w-10" src={track.track.album.images[0].url} alt="" />
                 <div>
                     <p className='w-36 lg:w-64 truncate text-white'>{track.track.name}</p>
@@ -40,3 +50,6 @@ function Song({order, track}) {
 
 export default Song;
 
+
+//  className="group-hover:hidden"
+// <PlayIcon className='h-7 w-7' />
