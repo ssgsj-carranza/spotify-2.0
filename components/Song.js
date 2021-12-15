@@ -11,7 +11,7 @@ function Song({order, track}) {
     const [currentTrackId, setCurrentTrackId] = useRecoilState(currentTrackIdState);
     const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
     const [isHovered, setIsHovered] = useState(false);
-
+    
     const handleMouseHover = () => {
         setIsHovered(true);
     };
@@ -28,12 +28,13 @@ function Song({order, track}) {
         });
     };
 
+    
     return (
         <div className="grid grid-cols-2 text-gray-500 py-4 px-5 hover:bg-gray-900 rounded-lg cursor-pointer" onClick={playSong}>
             <div onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave} className="group flex items-center space-x-4">
                 <p>
                     {!isHovered ? (`${order + 1}`) : (<PlayIcon className='h-7 w-7' />)}
-                    </p>
+                </p>
                 <img className="h-10 w-10" src={track.track.album.images[0].url} alt="" />
                 <div>
                     <p className='w-36 lg:w-64 truncate text-white'>{track.track.name}</p>
