@@ -54,8 +54,8 @@ function Center() {
                     <h1 className='text-2xl md:text-3xl xl:text-5xl font-bold'>{playlist?.name}</h1>
                     <div className='flex items-center space-x-2'>
                         <img className="rounded-full w-10 h-10" src={playlist?.tracks.items[0].track.album.images[0].url} alt="" />
-                        <h2 className='text-white'>{playlist?.owner.display_name}</h2>
-                        <h2 className='text-sm text-gray-400 font-bold'>{playlist?.tracks.total} songs</h2>
+                        <h2 className='text-white font-bold'>{playlist?.owner.display_name}</h2>
+                        <h2 className='text-sm text-gray-400 font-semibold'> · {playlist?.followers.total} followers · {playlist?.tracks.total} songs</h2>
                     </div>
                 </div>
             </section>
